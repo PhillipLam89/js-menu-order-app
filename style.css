@@ -1,0 +1,12 @@
+ * {
+   padding: 0;
+   margin: 0;
+ }
+button {
+   padding: 3px;
+ }
+
+ .item-desc {
+   display: flex;
+   gap: 1em;
+ }
