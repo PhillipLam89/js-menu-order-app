@@ -1,4 +1,4 @@
-const menuItems = [
+let menuItems = [
     {
         name: "Pizza",
         description: "best pizza ever! at least better than Dominos",

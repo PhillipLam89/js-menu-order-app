@@ -14,17 +14,47 @@
 </head>
 
 <body>
-  <h1>Make your Order</h1>
-
+  <div id="headerDiv">
+    <h1 id="titleTag">Hi Guest, Make your Order</h1>
+    <input id="userName" type="text" placeholder="user-name">
+    <input id="userPW" type="text" placeholder="password">
+    <button onclick="handleLogin(userName.value, userPW.value)"  id="logBtn">Log in</button>
+  </div>
   <main id="mainDiv">
   </main>
   Current Order:
 
   <section id="orderDiv"></section>
   <section>Total: $<span id="totalDiv"></span></section>
-  
+
+
+
+
+
+  <div id="myModal" class="modal">
+
+
+    <div class="modal-content">
+      <span id="closeModalBtn" class="close">&times;</span>
+      <label for="itemName">New Name:</label>
+      <input id="itemName" placeholder="name">
+
+      <label for="itemDesc">Description:</label>
+      <input id="itemDesc" placeholder="description">
+
+      <label for="itemPrice">Price:</label>
+      <input id="itemPrice" placeholder="price">
+
+      <label for="itemEmoji">Emoji:</label>
+      <input id="itemEmoji" placeholder="emoji">
+      <button onclick="handleEdit(itemName.value, itemDesc.value, itemPrice.value, itemEmoji.value)" type="submit" id="finishEdit"> Done</button>
+    </div>
+
+  </div>
   <script src="menu.js"></script>
   <script src="index.js"></script>
+  <script src="modalCode.js"></script>
+  <script src="users.js"></script>
 </body>
 
 </html>

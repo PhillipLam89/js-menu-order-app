@@ -1,6 +1,8 @@
 
 const orderedItems = []
-window.onload = function renderDefaultMenu() {
+
+renderDefaultMenu()
+function renderDefaultMenu() {
  mainDiv.innerHTML = menuItems.map((item) => {
     return `
     <section id=${item.id} class="menu-item-info">
@@ -8,13 +10,17 @@ window.onload = function renderDefaultMenu() {
       <p>${item.description}</p>
       <p>Price: $${item.price}</p>
       <button id=${item.id} class="add-item">Add to Cart</button>
+      <section class="admin-tools">
+        <button id=${item.id}>edit</button>
+        <button id=${item.id}>DELETE</button>
+      </section>
     </section>
-    <br>
+
     <hr>
 
   `
  }).join('')
-} ()
+}
 
 mainDiv.onclick = addToCart
 
@@ -57,15 +63,15 @@ function handleQuantity() {
   const newID = this.parentElement.id
   const index = orderedItems.findIndex(item => item.id == newID)
 
-  if (this.textContent === 'remove') {
-    clearItemHistory(index)
-    renderOrder()
-    return
-  }
+
 
   this.textContent == '+' ? orderedItems[index].quantity++
                           : orderedItems[index].quantity--
-  orderedItems[index].quantity == 0 &&  clearItemHistory(index)
+
+  if (this.textContent === 'remove' ||
+     orderedItems[index].quantity == 0) {
+        clearItemHistory(index)
+  }
 
   renderOrder()
 }
