@@ -2,7 +2,7 @@ closeModalBtn.onclick =
     () => myModal.style.display = 'none'
 
 function editItem(e) {
-
+  //handles modal popping up && pre-filling edit-values for each item
   myModal.style.display = 'block'
 
   const chosenItemObj = menuItems.find(item => item.id == e.target.id)
@@ -16,16 +16,13 @@ function editItem(e) {
   }
 
   finalizeEdit.onclick = function() {
+    myModal.style.display = 'none'
     const name = itemName.value.trim()
     const description = itemDesc.value.trim()
     const price = ~~itemPrice.value.trim()
     const emoji = itemEmoji.value.trim()
-    const obj = {name,description,id:chosenItemObj.id,price,emoji}
+    const obj = {name,description,id,price,emoji}
           obj.quantity = 1
-
-    const replaceIndex = menuItems.findIndex(item => item.id == obj.id)
-    menuItems = menuItems.with(replaceIndex, obj)
-    myModal.style.display = 'none'
 
     const target = document.querySelector(`.section-${id}`)
     target.innerHTML = `
@@ -42,6 +39,8 @@ function editItem(e) {
     allAddCarts.forEach(tag => tag.disabled = true)
     showAdminTools()
     adminListeners()
-
+      //code below replaces the OG item in menuItems array with newly edited item
+    const replaceIndex = menuItems.findIndex(item => item.id == obj.id)
+    menuItems = menuItems.with(replaceIndex, obj)
   }
 }
