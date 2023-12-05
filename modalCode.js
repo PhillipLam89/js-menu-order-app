@@ -20,9 +20,11 @@ function editItem(e) {
     const description = itemDesc.value.trim()
     const price = ~~itemPrice.value.trim()
     const emoji = itemEmoji.value.trim()
-    const obj = {name,description,id,price,emoji}
+    const obj = {name,description,id:chosenItemObj.id,price,emoji}
           obj.quantity = 1
-    menuItems = menuItems.with(id, obj)
+
+    const replaceIndex = menuItems.findIndex(item => item.id == obj.id)
+    menuItems = menuItems.with(replaceIndex, obj)
     myModal.style.display = 'none'
 
     const target = document.querySelector(`.section-${id}`)
@@ -35,10 +37,11 @@ function editItem(e) {
         <button id=${id}>edit</button>
         <button id=${id}>DELETE</button>
       </section>
-    `
+    `// this is the new item info
     const allAddCarts = document.querySelectorAll('.add-item')
     allAddCarts.forEach(tag => tag.disabled = true)
     showAdminTools()
     adminListeners()
+
   }
 }

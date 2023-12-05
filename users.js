@@ -15,7 +15,6 @@ const users = {
 
 
 function handleLogin(userName, pw) {
-  const allAdminFields = document.querySelectorAll('.admin-tools')
   const allCartBtns = document.querySelectorAll('.add-item')
 
   if (logBtn.textContent === 'Log out') {
@@ -29,8 +28,8 @@ function handleLogin(userName, pw) {
     orderDiv.innerHTML = ''
     orderedItems.length = 0
     allCartBtns.forEach(btn => btn.disabled = true)
-    allAdminFields.forEach(field =>
-         field.style.display = 'unset')
+
+    showAdminTools()
     adminListeners()
   } else alert('INVALID USER/PW COMBO')
 
@@ -53,8 +52,10 @@ const allAdminBtns = document.querySelectorAll('.admin-tools > button')
 allAdminBtns.forEach(btn => {
   if (btn.textContent === 'DELETE') {
     btn.onclick = deleteItem
-  } else {
+  } else if (btn.textContent === 'edit') {
     btn.onclick = editItem //editItem function is on modal.js file
+  } else {
+    btn.onclick = handleNewItem
   }
 })
 }
