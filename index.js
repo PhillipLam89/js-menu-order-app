@@ -5,7 +5,7 @@ renderDefaultMenu()
 function renderDefaultMenu() {
  mainDiv.innerHTML = menuItems.map((item) => {
     return `
-    <section id=${item.id} class="menu-item-info">
+    <section id=${item.id} class="menu-item-info section-${item.id}">
       <h2>${item.name}<span>${item.emoji}</span></h2>
       <p>${item.description}</p>
       <p>Price: $${item.price}</p>

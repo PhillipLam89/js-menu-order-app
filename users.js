@@ -68,9 +68,11 @@ function deleteItem(e) { //requires admin access
   adminListeners()
   const allCartBtns = document.querySelectorAll('.add-item')
   allCartBtns.forEach(btn => btn.disabled = true)
+  showAdminTools()
+}
+
+function showAdminTools() {
   const allAdminBtns = document.querySelectorAll('.admin-tools')
 
   allAdminBtns.forEach(field => field.style.display = 'unset')
 }
-
-
