@@ -1,5 +1,5 @@
 
-const orderedItems = []
+const orderedItems = [] //ALL order renders depend on this array
 
 renderDefaultMenu()
 function renderDefaultMenu() {

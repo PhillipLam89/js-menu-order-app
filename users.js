@@ -21,7 +21,7 @@ function handleLogin(userName, pw) {
     handleLogOut()
     return
   }
-  allLogin = userName+pw
+  const allLogin = userName+pw
   if (allLogin === users.owner.userName + users.owner.password) {
     titleTag.textContent = 'WELCOME, OWNER'
     currentUser = 'owner'
@@ -47,20 +47,6 @@ function handleLogOut() {
   adminListeners()
 }
 
-function adminListeners(){
-const allAdminBtns = document.querySelectorAll('.admin-tools > button')
-allAdminBtns.forEach(btn => {
-  if (btn.textContent === 'DELETE') {
-    btn.onclick = deleteItem
-  } else if (btn.textContent === 'edit') {
-    btn.onclick = editItem //editItem function is on modal.js file
-  } else {
-    btn.onclick = handleNewItem
-  }
-})
-}
-
-
 function deleteItem(e) { //requires admin access
 
   const properIndex = menuItems.findIndex(item => item.id == e.target.id)
@@ -71,9 +57,17 @@ function deleteItem(e) { //requires admin access
   allCartBtns.forEach(btn => btn.disabled = true)
   showAdminTools()
 }
-
+function adminListeners(){
+    const allAdminBtns = document.querySelectorAll('.admin-tools > button')
+    allAdminBtns.forEach(btn => {
+      if (btn.textContent === 'DELETE') {
+        btn.onclick = deleteItem
+      } else if (btn.textContent === 'edit') {
+        btn.onclick = editItem //editItem function is on modal.js file
+      }
+    })
+}
 function showAdminTools() {
   const allAdminBtns = document.querySelectorAll('.admin-tools')
-
   allAdminBtns.forEach(field => field.style.display = 'unset')
 }
